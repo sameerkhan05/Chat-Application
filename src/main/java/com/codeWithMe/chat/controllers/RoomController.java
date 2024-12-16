@@ -23,4 +23,13 @@ public class RoomController {
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(room);
 	}
+
+	@GetMapping("/{roomId}")
+	public ResponseEntity<?> joinRoom(@PathVariable String roomId) {
+		Room room = roomService.getRoom(roomId);
+		if (room == null) {
+			return ResponseEntity.badRequest().body("Room not found");
+		}
+		return ResponseEntity.ok(room);
+	}
 }

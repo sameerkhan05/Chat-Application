@@ -20,4 +20,8 @@ public class RoomService {
 		room.setRoomId(roomId);
 		return roomRepository.save(room);
 	}
+
+	public Room getRoom(String roomId) {
+		return roomRepository.findByRoomId(roomId);
+	}
 }
