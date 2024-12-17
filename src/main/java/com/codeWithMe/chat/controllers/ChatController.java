@@ -6,9 +6,11 @@ import com.codeWithMe.chat.services.ChatService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Changed to @RestController for consistency
+@CrossOrigin("http://localhost:5173")
 public class ChatController {
 
 	private final ChatService chatService;

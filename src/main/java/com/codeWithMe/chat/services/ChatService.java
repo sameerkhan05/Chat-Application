@@ -26,6 +26,8 @@ public class ChatService {
 
 		// Create a new message
 		Message message = new Message(req.getSender(), req.getContent());
+		message.setContent(req.getContent());
+		message.setSender(req.getSender());
 		message.setTimeStamp(LocalDateTime.now());
 
 		// Add the message to the room and save

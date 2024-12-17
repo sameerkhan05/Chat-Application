@@ -38,4 +38,12 @@ public class Message {
 	public void setTimeStamp(LocalDateTime timeStamp) {
 		this.timeStamp = timeStamp;
 	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 }
