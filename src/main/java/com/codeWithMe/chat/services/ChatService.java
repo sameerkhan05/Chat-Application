@@ -17,17 +17,21 @@ public class ChatService {
 	}
 
 	public Message sendMessage(String roomId, MessageRequest req) {
-		Room room = new Room();
+		// Fetch the existing room by its ID
+		Room room = roomRepository.findByRoomId(roomId);
+
 		if (room == null) {
 			throw new RuntimeException("Room not found");
 		}
-		Message message = new Message();
-		message.setContent(req.getContent());
-		message.setSender(req.getSender());
+
+		// Create a new message
+		Message message = new Message(req.getSender(), req.getContent());
 		message.setTimeStamp(LocalDateTime.now());
 
+		// Add the message to the room and save
 		room.getMessages().add(message);
 		roomRepository.save(room);
+
 		return message;
 	}
 }

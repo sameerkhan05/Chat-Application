@@ -6,20 +6,21 @@ import com.codeWithMe.chat.services.ChatService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController // Changed to @RestController for consistency
 public class ChatController {
+
 	private final ChatService chatService;
 
 	public ChatController(ChatService chatService) {
 		this.chatService = chatService;
 	}
 
-	@MessageMapping("/sendMessage/{roomId}") //sending message
-	@SendTo("/topic/room/{roomId}") //joined
+	// WebSocket method for sending messages
+	@MessageMapping("/sendMessage/{roomId}")
+	@SendTo("/topic/room/{roomId}")
 	public Message sendMessage(@DestinationVariable String roomId, MessageRequest req) {
 		return chatService.sendMessage(roomId, req);
 	}
-
 }
