@@ -32,4 +32,13 @@ public class RoomController {
 		}
 		return ResponseEntity.ok(room);
 	}
+
+	@GetMapping("/{roomId}/messages")
+	public ResponseEntity<?> getMessages(
+			@PathVariable String roomId,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "20") int size
+	) {
+		return ResponseEntity.ok(roomService.getMessages(roomId, page, size));
+	}
 }
